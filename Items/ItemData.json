@@ -1,0 +1,34 @@
+{
+	"Basic Sword": {
+		"ItemCategory": "Sword",
+		"ItemAttack": 1,
+		"ItemSpeed": 1,
+		"StackSize": 1,
+		"Description": "This is a basic training sword. Dont worry you will get use to it"
+	},
+	"Basic Bow": {
+		"ItemCategory": "Bow",
+		"ItemAttack": 1,
+		"ItemSpeed": 1,
+		"StackSize": 1,
+		"Description": "This is a basic training Bow. We dont have auto aim so good luck"
+	},
+	"Health Potion": {
+		"ItemCategory": "Consumable",
+		"AddHealth": 1,
+		"StackSize": 99,
+		"Description": "Well it a health potion. You drink it to heal health"
+	},
+	"Tea Leaf": {
+		"ItemCategory": "Resource",
+		"StackSize": 99,
+		"Description": "A leaf that can be used for crafting, not sure when that func ready but who know right"
+	},
+	"Bomb": {
+		"ItemCategory": "Bomb",
+		"ItemAttack": 2,
+		"ItemSpeed": 1,
+		"StackSize": 1,
+		"Description": "This bomb is prototype, but it still can do damage. Be careful not to get to close when it explode, you can still get hurt"
+	}
+}

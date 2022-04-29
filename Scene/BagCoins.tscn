@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Dungeon/trap and stuff/bag_coins.png" type="Texture" id=1]
+
+[node name="BagCoins" type="Sprite"]
+texture = ExtResource( 1 )

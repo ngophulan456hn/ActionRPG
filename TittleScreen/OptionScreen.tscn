@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TittleScreen/ReturnToTitle.gd" type="Script" id=1]
+[ext_resource path="res://Font/pixeltype.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://World/GrassBackground.png" type="Texture" id=3]
+[ext_resource path="res://Music and Sounds/Music.mp3" type="AudioStream" id=4]
+[ext_resource path="res://TittleScreen/Back.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Font/pixeltype.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+font_data = ExtResource( 2 )
+
+[node name="OptionScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 192.0
+margin_bottom = 23.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
+text = "Option"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterRow" type="VBoxContainer" parent="Menu"]
+margin_top = 27.0
+margin_right = 192.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Menu/CenterRow"]
+margin_right = 192.0
+margin_bottom = 16.0
+
+[node name="Volumn" type="Label" parent="Menu/CenterRow/VBoxContainer"]
+margin_right = 48.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 4 )
+text = "Volumn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Menu/CenterRow/VBoxContainer"]
+margin_left = 52.0
+margin_right = 192.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -80.0
+max_value = 0.0
+
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+margin_top = 72.0
+margin_right = 192.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 1
+
+[node name="Back" parent="Menu/Buttons" instance=ExtResource( 6 )]
+margin_right = 192.0
+button_name = "Back"
+
+[node name="VersionLabel" type="Label" parent="Menu"]
+margin_top = 118.0
+margin_right = 192.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Version 0.0.1 - Beta
+Arthor: Alan"
+align = 1
+valign = 1
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 160, 96 )
+z_index = -99
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 320, 192 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[connection signal="value_changed" from="Menu/CenterRow/VBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Menu/Buttons/Back" to="." method="_on_Back_pressed"]

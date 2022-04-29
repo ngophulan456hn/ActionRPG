@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/24 - Final Area.ogg-25d0a2f88f0a7aa95fdaeb836c7c36dc.oggstr"
+
+[deps]
+
+source_file="res://Music and Sounds/Musics/24 - Final Area.ogg"
+dest_files=[ "res://.import/24 - Final Area.ogg-25d0a2f88f0a7aa95fdaeb836c7c36dc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

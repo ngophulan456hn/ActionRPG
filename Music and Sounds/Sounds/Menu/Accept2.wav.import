@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Accept2.wav-56543d3acd0092d63182984d243e6d14.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Sounds/Menu/Accept2.wav"
+dest_files=[ "res://.import/Accept2.wav-56543d3acd0092d63182984d243e6d14.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Explosion3.wav-43db8d9c5958a57f7ac567acf65bccfa.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Sounds/Game/Explosion3.wav"
+dest_files=[ "res://.import/Explosion3.wav-43db8d9c5958a57f7ac567acf65bccfa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

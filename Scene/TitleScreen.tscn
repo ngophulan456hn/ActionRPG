@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://UI/Logo.png" type="Texture" id=1]
+[ext_resource path="res://Scene/SoundEffects.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TittleScreen/Continue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TittleScreen/NewGame.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.png" type="Texture" id=5]
+[ext_resource path="res://Font/pixeltype.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://TittleScreen/FadeIn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/GrassBackground.png" type="Texture" id=8]
+[ext_resource path="res://Scene/TitleScreen.gd" type="Script" id=9]
+[ext_resource path="res://TittleScreen/Exit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TittleScreen/Setting.tscn" type="PackedScene" id=11]
+[ext_resource path="res://TittleScreen/SettingsMenu.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+font_data = ExtResource( 6 )
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 16.0
+margin_right = 304.0
+margin_bottom = 194.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="Menu"]
+margin_right = 288.0
+margin_bottom = 80.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 84.0
+margin_right = 288.0
+margin_bottom = 167.0
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
+margin_right = 142.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 1
+
+[node name="NewGame" parent="Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
+margin_right = 142.0
+focus_neighbour_top = NodePath("../Exit")
+
+[node name="Continue" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
+margin_top = 21.0
+margin_right = 142.0
+margin_bottom = 41.0
+
+[node name="Setting" parent="Menu/CenterRow/Buttons" instance=ExtResource( 11 )]
+margin_top = 42.0
+margin_right = 142.0
+margin_bottom = 62.0
+
+[node name="Exit" parent="Menu/CenterRow/Buttons" instance=ExtResource( 10 )]
+margin_top = 63.0
+margin_right = 142.0
+margin_bottom = 83.0
+focus_neighbour_bottom = NodePath("../NewGame")
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
+margin_left = 146.0
+margin_right = 288.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sprite" type="Sprite" parent="Menu/CenterRow/CenterContainer"]
+position = Vector2( 78, 36 )
+texture = ExtResource( 5 )
+hframes = 60
+frame = 18
+
+[node name="VersionLabel" type="Label" parent="Menu"]
+margin_top = 171.0
+margin_right = 288.0
+margin_bottom = 194.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Version 0.0.1 - Beta
+Arthor: Alan"
+align = 1
+
+[node name="FadeIn" parent="." instance=ExtResource( 7 )]
+mouse_filter = 2
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 160, 96 )
+z_index = -99
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 320, 192 )
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 12 )]
+visible = false
+
+[node name="SoundEffects" parent="." instance=ExtResource( 2 )]
+
+[connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]

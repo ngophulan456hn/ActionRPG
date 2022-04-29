@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Fireball2.wav-ec42f7f0c71f47e1557ecd53ca73e10c.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Sounds/Game/Fireball2.wav"
+dest_files=[ "res://.import/Fireball2.wav-ec42f7f0c71f47e1557ecd53ca73e10c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

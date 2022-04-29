@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TittleScreen/MenuButton.tscn" type="PackedScene" id=1]
+
+[node name="Title" instance=ExtResource( 1 )]
+button_name = "Title"
+
+[node name="Label" parent="." index="0"]
+text = "Title"

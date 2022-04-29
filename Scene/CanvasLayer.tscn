@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://UI/WhiteBackground.png" type="Texture" id=1]
+[ext_resource path="res://Scene/FPSdisplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/Inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/SoundEffects.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/CanvasLayer.gd" type="Script" id=5]
+[ext_resource path="res://Scene/HealthUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scene/StaminaUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scene/MenuScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://TittleScreen/FadeIn.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scene/Hotbar.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Shader" id=79]
+code = "shader_type canvas_item;
+
+uniform float blur: hint_range(0, 6) = 2.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, blur);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=80]
+shader = SubResource( 79 )
+shader_param/blur = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="HealthUI" parent="." instance=ExtResource( 6 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 108.0
+margin_bottom = 19.0
+
+[node name="StaminaUI" parent="." instance=ExtResource( 7 )]
+margin_left = 8.0
+margin_top = 21.0
+margin_right = 108.0
+margin_bottom = 29.0
+
+[node name="FPSdisplay" parent="." instance=ExtResource( 2 )]
+
+[node name="MenuScreen" parent="." instance=ExtResource( 8 )]
+
+[node name="CanvasLayerBlur" type="TextureRect" parent="MenuScreen"]
+show_behind_parent = true
+material = SubResource( 80 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeIn" parent="." instance=ExtResource( 9 )]
+mouse_filter = 2
+
+[node name="Inventory" parent="." instance=ExtResource( 3 )]
+
+[node name="SoundEffects" parent="." instance=ExtResource( 4 )]
+
+[node name="Hotbar" parent="." instance=ExtResource( 10 )]
