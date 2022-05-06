@@ -11,27 +11,39 @@ var selected_style: StyleBoxTexture = null
 var ItemClass = preload("res://Scene/Item.tscn")
 var item = null
 var slot_index = null
+var slot_type = null
+
+enum SlotType {
+	HOTBAR = 0,
+	INVENTORY,
+	SHIRT,
+	PANT,
+	BOOT
+}
 
 func _ready():
 	default_style = StyleBoxTexture.new()
 	empty_style = StyleBoxTexture.new()
-	
+	selected_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
+	selected_style.texture = selected_tex
 #	if randi() % 2 == 0:
 #		item = ItemClass.instance()
 #		add_child(item)
 	refresh_style()
 
 func refresh_style():
-	if item == null:
-		set('styles/panel', empty_style)
+	if slot_type == SlotType.HOTBAR and PlayerInventory.active_item_slot == slot_index:
+		set('custom_styles/panel', selected_style)
+	elif item == null:
+		set('custom_styles/panel', empty_style)
 	else:
-		set('styles/panel', default_style)
+		set('custom_styles/panel', default_style)
 		
 func pickFromSlot():
 	remove_child(item)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("CanvasLayer")
 	inventoryNode.add_child(item)
 	item = null
 	refresh_style()
@@ -39,7 +51,7 @@ func pickFromSlot():
 func putIntoSlot(new_item):
 	item = new_item
 	item.position = Vector2(0,0)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("CanvasLayer")
 	inventoryNode.remove_child(item)
 	add_child(item)
 	refresh_style()

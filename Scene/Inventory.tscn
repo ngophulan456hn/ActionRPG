@@ -1,12 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Inventory/default_inventory_background.png" type="Texture" id=1]
 [ext_resource path="res://Inventory/item_slot_default_background.png" type="Texture" id=2]
 [ext_resource path="res://Scene/Slot.gd" type="Script" id=3]
 [ext_resource path="res://Scene/Inventory.gd" type="Script" id=4]
 [ext_resource path="res://Scene/SoundEffects.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Inventory/PantsOverlay.png" type="Texture" id=6]
+[ext_resource path="res://Inventory/ShirtOverlay.png" type="Texture" id=7]
+[ext_resource path="res://Inventory/ShoesOverlay.png" type="Texture" id=8]
+[ext_resource path="res://Player/Player.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 18, 18 )
+
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 18, 18 )
 
@@ -208,5 +216,75 @@ margin_bottom = 84.0
 rect_min_size = Vector2( 18, 18 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 106, 86 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 9 )
+hframes = 60
+frame = 18
+
+[node name="EquipSlots" type="GridContainer" parent="."]
+margin_left = 96.0
+margin_top = 63.0
+margin_right = 114.0
+margin_bottom = 119.0
+custom_constants/vseparation = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShirtSlot" type="Panel" parent="EquipSlots"]
+margin_right = 18.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="EquipSlots/ShirtSlot"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 17.0
+margin_bottom = 17.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PantSlot" type="Panel" parent="EquipSlots"]
+margin_top = 19.0
+margin_right = 18.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 18, 18 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="EquipSlots/PantSlot"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 17.0
+margin_bottom = 17.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BootSlot" type="Panel" parent="EquipSlots"]
+margin_top = 38.0
+margin_right = 18.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 18, 18 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="EquipSlots/BootSlot"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 17.0
+margin_bottom = 17.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SoundEffects" parent="." instance=ExtResource( 5 )]

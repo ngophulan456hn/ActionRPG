@@ -1253,7 +1253,7 @@ position = Vector2( 72, 64 )
 
 [node name="AnimateSprite" parent="YSort/Room1/Bat2" index="0"]
 material = SubResource( 54 )
-frame = 0
+frame = 1
 
 [node name="WanderController" parent="YSort/Room1/Bat2" index="8"]
 wander_range = 0

@@ -30,5 +30,20 @@
 		"ItemSpeed": 1,
 		"StackSize": 1,
 		"Description": "This bomb is prototype, but it still can do damage. Be careful not to get to close when it explode, you can still get hurt"
-	}
+	},
+	"Blue Shirt": {
+		"ItemCategory": "Shirt",
+		"StackSize": 1,
+		"Description": "This is a shirt!!"
+	},
+	"Brown Pant": {
+		"ItemCategory": "Pant",
+		"StackSize": 1,
+		"Description": "This is a pant!!"
+	},
+	"Black Boot": {
+		"ItemCategory": "Boot",
+		"StackSize": 1,
+		"Description": "It's a boot, what do you want more"
+	},
 }

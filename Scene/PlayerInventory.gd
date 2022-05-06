@@ -1,6 +1,9 @@
 extends Node
 
+signal active_item_updated
+
 const NUM_INVENTORY_SLOT = 20
+const NUM_HOTBAR_SLOT = 8
 
 const SlotClass = preload("res://Scene/Slot.gd")
 const ItemClass = preload("res://Scene/Item.gd")
@@ -12,6 +15,19 @@ var inventory = {
 	3: ["Health Potion", 1],
 	4: ["Tea Leaf", 98]
 }
+
+var hotbar = {
+	0: ["Basic Sword", 1],	#--> slot index: [item_name, item_quantity]
+	1: ["Health Potion", 1],
+}
+
+var equips = {
+	0: ["Basic Sword", 1],	#--> slot index: [item_name, item_quantity]
+	1: ["Basic Bow", 1],
+	2: ["Bomb", 1],
+}
+
+var active_item_slot = 0
 
 func add_item(item_name, item_quantity):
 	for item in inventory:
@@ -53,11 +69,31 @@ func check_item(item_name) -> bool:
 			return true
 	return false
 	
-func add_item_to_empty_slot(item: ItemClass,slot: SlotClass):
-	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
+func add_item_to_empty_slot(item: ItemClass, slot: SlotClass, is_hotbar: bool = false):
+	if is_hotbar:
+		hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
+	else:
+		inventory[slot.slot_index] = [item.item_name, item.item_quantity]
 	
-func remove_item(slot: SlotClass):
-	inventory.erase(slot.slot_index)
+func remove_item(slot: SlotClass, is_hotbar: bool = false):
+	if is_hotbar:
+		hotbar.erase(slot.slot_index)
+	else:
+		inventory.erase(slot.slot_index)
 
-func add_item_quantity(slot: SlotClass, quantity_to_add: int):
-	inventory[slot.slot_index][1] += quantity_to_add
+func add_item_quantity(slot: SlotClass, quantity_to_add: int, is_hotbar: bool = false):
+	if is_hotbar:
+		hotbar[slot.slot_index][1] += quantity_to_add
+	else:
+		inventory[slot.slot_index][1] += quantity_to_add
+	
+func active_item_scroll_up():
+	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOT
+	emit_signal("active_item_updated")
+	
+func active_item_scroll_down():
+	if active_item_slot == 0:
+		active_item_slot = NUM_HOTBAR_SLOT - 1
+	else:
+		active_item_slot -= 1
+	emit_signal("active_item_updated")
