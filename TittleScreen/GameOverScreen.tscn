@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scene/SoundEffects.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TittleScreen/Exit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TittleScreen/Continue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Font/pixeltype.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://TittleScreen/Title.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TittleScreen/FadeIn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://TittleScreen/GameOverScreen.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+font_data = ExtResource( 4 )
+
+[node name="GameOverScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 192.0
+margin_bottom = 23.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
+text = "Game Over"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 27.0
+margin_right = 192.0
+margin_bottom = 91.0
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
+margin_right = 192.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 1
+alignment = 1
+
+[node name="Continue" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
+margin_top = 1.0
+margin_right = 192.0
+margin_bottom = 21.0
+
+[node name="Title" parent="Menu/CenterRow/Buttons" instance=ExtResource( 5 )]
+margin_top = 22.0
+margin_right = 192.0
+margin_bottom = 42.0
+scene_to_load = "res://Scene/TitleScreen.tscn"
+
+[node name="Exit" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
+margin_top = 43.0
+margin_right = 192.0
+margin_bottom = 63.0
+
+[node name="VersionLabel" type="Label" parent="Menu"]
+margin_top = 95.0
+margin_right = 192.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Version 0.0.1 - Beta
+Arthor: Alan"
+align = 1
+valign = 1
+
+[node name="FadeIn" parent="." instance=ExtResource( 6 )]
+mouse_filter = 2
+
+[node name="SoundEffects" parent="." instance=ExtResource( 1 )]
+
+[connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]

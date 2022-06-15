@@ -5,6 +5,7 @@ onready var label = $Label
 
 var item_name
 var item_quantity
+var empty_tex = preload("res://Inventory/item_slot_empty_background.png")
 
 func _ready():
 	var rand_val = randi() % 5
@@ -18,7 +19,7 @@ func _ready():
 		item_name = "Bomb"
 	else:
 		item_name = "Tea Leaf"
-	
+
 	load_texture(item_name)
 	var stack_size = int(ItemData.item_data[item_name]["StackSize"])
 	item_quantity = randi() % stack_size + 1
@@ -41,7 +42,8 @@ func load_texture(item_name):
 		"Bomb":
 			textureRect.texture = load("res://Items/Weapons/Bomb/bomb.png")
 		_:
-			textureRect.texture = load("res://Items/Potion/Hear.png")
+			print('cant find item name::', item_name)
+			visible = false
 
 func set_item(nm, qt):
 	item_name = nm
@@ -54,7 +56,7 @@ func set_item(nm, qt):
 	else:
 		label.visible = true
 		label.text = String(item_quantity)
-		
+	
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add
 	label.text = String(item_quantity)
@@ -62,3 +64,9 @@ func add_item_quantity(amount_to_add):
 func decrease_item_quantity(amount_to_remove):
 	item_quantity -= amount_to_remove
 	label.text = String(item_quantity)
+	
+func delete_item():
+	item_name = null
+	item_quantity = 0
+	textureRect.texture = empty_tex
+	label.visible = false

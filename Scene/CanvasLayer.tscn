@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://UI/WhiteBackground.png" type="Texture" id=1]
 [ext_resource path="res://Scene/FPSdisplay.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scene/MenuScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://TittleScreen/FadeIn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scene/Hotbar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TittleScreen/GameOverScreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
@@ -45,6 +46,21 @@ margin_bottom = 29.0
 [node name="MenuScreen" parent="." instance=ExtResource( 8 )]
 
 [node name="CanvasLayerBlur" type="TextureRect" parent="MenuScreen"]
+show_behind_parent = true
+material = SubResource( 80 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverScreen" parent="." instance=ExtResource( 11 )]
+pause_mode = 2
+
+[node name="CanvasLayerBlur" type="TextureRect" parent="GameOverScreen"]
 show_behind_parent = true
 material = SubResource( 80 )
 anchor_right = 1.0

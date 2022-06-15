@@ -3,6 +3,8 @@ extends KinematicBody2D
 enum { MOVE, ROLL, ATTACK}
 
 const PlayerHurtSound = preload("res://Scene/PlayerHurtSound.tscn")
+const Bomb = preload("res://Scene/Bomb.tscn")
+const Pig = preload("res://Scene/Pig.tscn")
 
 var state = MOVE
 var velocity = Vector2.ZERO
@@ -37,6 +39,7 @@ func _ready():
 	swordHitboxCollision.disabled = true
 	swordHitbox.knockback_vector = roll_vector
 	blinkAnimationPlayer.play("Stop")
+	spawn_pig_with_player()
 	#speechBubble.set_text("Hello and welcome you to my game")
 	
 func _physics_process(delta):
@@ -81,6 +84,11 @@ func move_state(delta):
 	if Input.is_action_just_pressed("ui_attack"):
 		state = ATTACK
 	
+func plant_bomb():
+	var bomb = Bomb.instance()
+	get_parent().add_child(bomb)
+	bomb.global_position = global_position
+	
 func attack_state(delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
@@ -109,10 +117,13 @@ func roll_animation_finished():
 	
 func _input(event):
 	if event.is_action_pressed("ui_interact"):
-		if pickupZone.item_in_range.size() > 0:
-			var pickup_item = pickupZone.item_in_range.values()[0]
-			pickup_item.pick_up_item(self)
-			pickupZone.item_in_range.erase(pickup_item)
+#		if pickupZone.item_in_range.size() > 0:
+#			var pickup_item = pickupZone.item_in_range.values()[0]
+#			pickup_item.pick_up_item(self)
+#			pickupZone.item_in_range.erase(pickup_item)
+		if PlayerInventory.active_item != null:
+			if PlayerInventory.active_item.item_name == "Bomb":
+				plant_bomb()
 
 func _on_Hurtbox_area_entered(area):
 	PlayerStats.set_health(PlayerStats.get_health() - area.damage)
@@ -131,7 +142,14 @@ func _on_PlayerStats_no_health():
 	self.global_position = PlayerStats.get_spawn_position()
 	PlayerStats.set_max_health(PlayerStats.get_max_health())
 	PlayerStats.set_health(PlayerStats.get_max_health())
+	spawn_pig_with_player()
 	#get_tree().reload_current_scene()
+	
+func spawn_pig_with_player():
+	if SaveGame.game_data.pig:
+		var pig = Pig.instance()
+		get_parent().add_child(pig)
+		pig.global_position = global_position
 
 func _on_RoomDetector_area_entered(area):
 	var collision_shape = area.get_node("CollisionShape2D")

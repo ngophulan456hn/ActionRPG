@@ -50,13 +50,16 @@ func seek_player():
 			state = CHASE
 		else:
 			state = IDLE
+		SaveGame.game_data.pig = true
 	elif not speak_yet:
 		speechbubble.set_text("oink")
 		speak_yet = true
 		timer.start(10)
+		SaveGame.game_data.pig = false
 
 func on_player_death():
-	state = DEATH
+	if SaveGame.game_data.pig:
+		state = DEATH
 	
 func _on_Timer_timeout():
 	speak_yet = false

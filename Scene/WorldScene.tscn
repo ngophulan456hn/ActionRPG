@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://Scene/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://Scene/SoundEffects.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Scene/BackgroundMusic.tscn" type="PackedScene" id=35]
 [ext_resource path="res://Scene/TeaLeafDrop.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Scene/CampFire.tscn" type="PackedScene" id=37]
 [ext_resource path="res://Texture/TX Tileset Wall.png" type="Texture" id=38]
 [ext_resource path="res://Scene/GateToDungeon.tscn" type="PackedScene" id=39]
 
@@ -1215,6 +1216,7 @@ format = 1
 tile_data = PoolIntArray( -1572824, 0, 1048576, -1572823, 0, 1048577, -1572822, 0, 1048577, -1572821, 0, 1048577, -1572820, 0, 1048577, -1572819, 0, 1048577, -1572818, 0, 1048577, -1572817, 0, 1048577, -1572816, 0, 1048578, -1572812, 0, 1048576, -1572811, 0, 1048577, -1572810, 0, 1048577, -1572809, 0, 1048577, -1572808, 0, 1048577, -1572807, 0, 1048577, -1572806, 0, 1048577, -1572805, 0, 1048578, -1507288, 0, 1179648, -1507287, 0, 1179649, -1507286, 0, 1179649, -1507285, 0, 1179649, -1507284, 0, 1179649, -1507283, 0, 1179649, -1507282, 0, 1179649, -1507281, 0, 1179649, -1507280, 0, 1179650, -1507276, 0, 1179648, -1507275, 0, 1179649, -1507274, 0, 1179649, -1507273, 0, 1179649, -1507272, 0, 1179649, -1507271, 0, 1179649, -1507270, 0, 1179649, -1507269, 0, 1179650, -1441752, 0, 1179648, -1441751, 0, 1179649, -1441750, 0, 1179649, -1441749, 0, 1179649, -1441748, 0, 1179649, -1441747, 0, 1179649, -1441746, 0, 1179649, -1441745, 0, 1179649, -1441744, 0, 1179650, -1441740, 0, 1179648, -1441739, 0, 1179649, -1441738, 0, 1179649, -1441737, 0, 1179649, -1441736, 0, 1179649, -1441735, 0, 1179649, -1441734, 0, 1179649, -1441733, 0, 1179650, -1376216, 0, 1245184, -1376215, 0, 1245185, -1376214, 0, 1245185, -1376213, 0, 1245185, -1376212, 0, 1245185, -1376211, 0, 1245185, -1376210, 0, 1245185, -1376209, 0, 1245185, -1376208, 0, 1245186, -1376204, 0, 1245184, -1376203, 0, 1245185, -1376202, 0, 1245185, -1376201, 0, 1245185, -1376200, 0, 1245185, -1376199, 0, 1245185, -1376198, 0, 1245185, -1376197, 0, 1245186 )
 
 [node name="GrassTileMap" type="TileMap" parent="."]
+visible = false
 z_index = -1
 tile_set = SubResource( 118 )
 cell_size = Vector2( 32, 32 )
@@ -1253,12 +1255,18 @@ position = Vector2( 72, 64 )
 
 [node name="AnimateSprite" parent="YSort/Room1/Bat2" index="0"]
 material = SubResource( 54 )
-frame = 1
+frame = 2
 
 [node name="WanderController" parent="YSort/Room1/Bat2" index="8"]
 wander_range = 0
 
 [node name="Trees" type="YSort" parent="YSort/Room1"]
+
+[node name="TeaLeafDrop" parent="YSort/Room1/Trees" instance=ExtResource( 36 )]
+position = Vector2( 72, 72 )
+
+[node name="TeaLeafDrop2" parent="YSort/Room1/Trees" instance=ExtResource( 36 )]
+position = Vector2( 48, 72 )
 
 [node name="Tree" parent="YSort/Room1/Trees" instance=ExtResource( 3 )]
 position = Vector2( 72, 64 )
@@ -1312,14 +1320,9 @@ position = Vector2( 240, 144 )
 [node name="Grass11" parent="YSort/Room1/Grass" instance=ExtResource( 7 )]
 position = Vector2( 272, 32 )
 
-[node name="TeaLeafDrop" parent="YSort/Room1" instance=ExtResource( 36 )]
-position = Vector2( 152, 8 )
-
-[node name="TeaLeafDrop2" parent="YSort/Room1" instance=ExtResource( 36 )]
-position = Vector2( 128, 8 )
-
-[node name="TeaLeafDrop3" parent="YSort/Room1" instance=ExtResource( 36 )]
-position = Vector2( 176, 8 )
+[node name="CampFire" parent="YSort/Room1" instance=ExtResource( 37 )]
+position = Vector2( 160, 96 )
+scale = Vector2( 0.7, 0.7 )
 
 [node name="Room2" type="YSort" parent="YSort"]
 position = Vector2( 0, -192 )
@@ -1646,7 +1649,7 @@ layer = 100
 [node name="MenuScreen" parent="CanvasLayer" index="3"]
 visible = false
 
-[node name="Inventory" parent="CanvasLayer" index="5"]
+[node name="Inventory" parent="CanvasLayer" index="6"]
 visible = false
 
 [editable path="YSort/Room1/Bat2"]

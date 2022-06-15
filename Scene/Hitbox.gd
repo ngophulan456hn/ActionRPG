@@ -1,6 +1,7 @@
 extends Area2D
 
 export var damage = 1 setget set_damage, get_damage
+var knockback_vector = Vector2.ZERO
 
 func set_damage(value: int):
 	if value <= 0 :

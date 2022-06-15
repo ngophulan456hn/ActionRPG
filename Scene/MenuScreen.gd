@@ -60,7 +60,9 @@ func save_game():
 		"position": player_position,
 		"spawn_position": PlayerStats.get_spawn_position(),
 		"pig": false,
-		"item": null
+		"inventory": PlayerInventory.inventory,
+		"hotbar": PlayerInventory.hotbar,
+		"equips": PlayerInventory.equips
 	}
 	SaveGame.save_data(game_data)
 	soundEffect.stream = load("res://Music and Sounds/Unpause.wav");

@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var Player = $YSort/Player
-onready var Bat = $YSort/Bat
 onready var backgroundMusic = $BackgroundMusic
 onready var chest = $YSort/Room4/Chest
 onready var slimes = $YSort/Room4/Slimes
@@ -19,8 +18,6 @@ func _ready():
 	if(PlayerStats.get_last_location() != Vector2.ZERO):
 		Player.global_position = PlayerStats.get_last_location()
 	get_tree().paused = false
-	#Bat.global_position = random_position()
-	#Bat.spawn_bat(5)
 	pass
 	
 func _process(delta):

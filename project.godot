@@ -18,8 +18,8 @@ config/icon="res://icon.png"
 
 GlobalVariable="*res://Scene/GlobalVariable.tscn"
 PlayerStats="*res://Scene/PlayerStats.tscn"
-PlayerInventory="*res://Scene/PlayerInventory.gd"
 SaveSetting="*res://TittleScreen/SaveSetting.gd"
+PlayerInventory="*res://Scene/PlayerInventory.gd"
 SaveGame="*res://TittleScreen/SaveGame.gd"
 ItemData="*res://Scene/ItemData.gd"
 
