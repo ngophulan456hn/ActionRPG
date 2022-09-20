@@ -1,5 +1,7 @@
 extends Node2D
 
+export (String) var message = "Hello"
+
 onready var anchor = $Anchor
 onready var text_node = $Anchor/RichTextLabel
 onready var text_bg = $Anchor/ColorRect
@@ -13,7 +15,7 @@ const margin_offset = 4
 func _ready():
 	visible = false
 	
-func set_text(text, wait_time = 3):
+func set_text(text = message, wait_time = 3):
 	visible = true
 	#set timer
 	timer.wait_time = wait_time

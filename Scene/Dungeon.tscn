@@ -816,6 +816,8 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 65542, 4, 0, 65549, 2, 0 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
@@ -938,10 +940,6 @@ position = Vector2( 24, 96 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 5 )]
 
-[node name="MenuScreen" parent="CanvasLayer" index="3"]
-visible = false
-
 [connection signal="body_entered" from="YSort/Room1/ExitDungeon" to="." method="_on_ExitDungeon_body_entered"]
-[connection signal="body_exited" from="YSort/Room1/ExitDungeon" to="." method="_on_ExitDungeon_body_exited"]
 
 [editable path="CanvasLayer"]

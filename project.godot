@@ -22,6 +22,7 @@ SaveSetting="*res://TittleScreen/SaveSetting.gd"
 PlayerInventory="*res://Scene/PlayerInventory.gd"
 SaveGame="*res://TittleScreen/SaveGame.gd"
 ItemData="*res://Scene/ItemData.gd"
+Events="*res://Scene/Events.gd"
 
 [display]
 

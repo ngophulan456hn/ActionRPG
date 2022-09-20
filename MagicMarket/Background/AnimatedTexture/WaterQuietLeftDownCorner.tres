@@ -1,0 +1,6 @@
+[gd_resource type="AnimatedTexture" load_steps=2 format=2]
+
+[ext_resource path="res://MagicMarket/Background/WaterTilesetSplit/Tileset_water_175.png" type="Texture" id=1]
+
+[resource]
+frame_0/texture = ExtResource( 1 )

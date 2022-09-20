@@ -2,12 +2,18 @@ extends Node
 
 const SAVEFILE = "res://SaveGame.save"
 
+signal load_game
+
 var game_data = {
 	"max_health": 4,
 	"health": 4,
 	"world_scene": "WorldScene.tscn",
-	"position": Vector2(0,0),
 	"spawn_position": Vector2(0,0),
+	"last_location": {
+		"world": Vector2.ZERO,
+		"dungeon": Vector2.ZERO,
+		"market": Vector2.ZERO
+	},
 	"pig": false,
 	"inventory": PlayerInventory.inventory,
 	"hotbar": PlayerInventory.hotbar,
@@ -31,9 +37,10 @@ func load_game():
 	game_data = file.get_var()
 	file.close()
 	print('load_game::', game_data)
+	emit_signal("load_game")
 	PlayerStats.set_health(game_data.health)
 	PlayerStats.set_max_health(game_data.max_health)
-	PlayerStats.set_last_location(game_data.position)
+	PlayerStats.set_last_location(game_data.last_location)
 	PlayerInventory.inventory = game_data.inventory
 	PlayerInventory.hotbar = game_data.hotbar
 	PlayerInventory.equips = game_data.equips

@@ -98,3 +98,7 @@ func left_click_not_holding(slot: SlotClass):
 	slot.pickFromSlot()
 	find_parent('CanvasLayer').holding_item.global_position = get_global_mouse_position()
 				
+func show_or_hide_item(is_show: bool):
+	for i in range(slots.size()):
+		if PlayerInventory.hotbar.has(i):
+			slots[i].item.visible = is_show

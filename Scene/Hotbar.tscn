@@ -45,9 +45,6 @@ margin_right = 284.667
 margin_bottom = 299.0
 custom_fonts/font = SubResource( 3 )
 text = "Active Item Label"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HotbarSlots" type="GridContainer" parent="."]
 margin_left = 192.0

@@ -1,8 +1,12 @@
 extends Node
 
-var max_health = 1 setget set_max_health, get_max_health
+var max_health = 4 setget set_max_health, get_max_health
 var max_stamina = 60 setget set_max_stamina, get_max_stamina
-var last_location = Vector2.ZERO setget set_last_location, get_last_location
+var last_location = {
+	'world': Vector2.ZERO,
+	'dungeon': Vector2.ZERO,
+	'market': Vector2.ZERO
+}
 var spawn_position = Vector2.ZERO setget set_spawn_position, get_spawn_position
 
 onready var health = max_health setget set_health, get_health
@@ -52,10 +56,17 @@ func recharge_saitama(value: float):
 	set_current_stamina(value)
 	emit_signal("recharge_saitama", current_stamina)
 	
-func set_last_location(position: Vector2):
-	last_location = position
+func set_last_location(location):
+	for key in location:
+		match key:
+			'dungeon':
+				last_location.dungeon = location[key]
+			'world':
+				last_location.world = location[key]
+			'market':
+				last_location.market = location[key]
 	
-func get_last_location() -> Vector2:
+func get_last_location():
 	return last_location
 	
 func set_spawn_position(location: Vector2):

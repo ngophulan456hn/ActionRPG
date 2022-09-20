@@ -48,16 +48,21 @@ func _input(event):
 			button_focus = true
 		
 func save_game():
+	var last_location = PlayerStats.get_last_location()
 	var world_scene = get_tree().get_current_scene().get_name()
-	if world_scene == 'WorldScene':
-		player_position = get_node("/root/WorldScene/YSort/Player").global_position
-	else:
-		player_position = get_node("/root/DungeonScene/YSort/Player").global_position
+	match world_scene:
+		'WorldScene':
+			last_location.world = get_node("/root/WorldScene/YSort/Player").global_position
+		'Dungeon':
+			last_location.dungeon = get_node("/root/Dungeon/YSort/Player").global_position
+		'MagicMarket':
+			last_location.market = get_node("/root/MagicMarket/Room/Player").global_position
+	 
 	var game_data = {
 		"max_health": PlayerStats.get_max_health(),
 		"health": PlayerStats.get_health(),
 		"world_scene": world_scene + ".tscn",
-		"position": player_position,
+		"last_location": last_location,
 		"spawn_position": PlayerStats.get_spawn_position(),
 		"pig": false,
 		"inventory": PlayerInventory.inventory,

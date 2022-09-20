@@ -17,10 +17,10 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var swordHitboxCollision = $HitboxPivot/SwordHitbox/CollisionShape2D
 onready var hurtBox = $Hurtbox
-onready var camera2D = $Camera2D
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 onready var speechBubble = $SpeechBubble
 onready var pickupZone = $PickupZone
+onready var remoteTransform2D = $RemoteTransform2D
 
 const MAX_SPEED = 100
 const ACCELERATION = 1000
@@ -32,15 +32,18 @@ const RECHARGE_ROLL_SPEED = 10
 func _ready():
 	PlayerStats.connect("no_health", self, "_on_PlayerStats_no_health")
 	PlayerStats.set_spawn_position(self.global_position)
-	if SaveGame.game_data.position == Vector2(0,0):
-		PlayerStats.set_max_health(SaveGame.game_data.max_health)
-		PlayerStats.set_health(SaveGame.game_data.health)
+	SaveGame.connect("load_game", self, '_on_load_game')
 	animationTree.active = true
 	swordHitboxCollision.disabled = true
 	swordHitbox.knockback_vector = roll_vector
 	blinkAnimationPlayer.play("Stop")
 	spawn_pig_with_player()
 	#speechBubble.set_text("Hello and welcome you to my game")
+	
+func _on_load_game():
+	PlayerStats.set_max_health(SaveGame.game_data.max_health)
+	PlayerStats.set_health(SaveGame.game_data.health)
+	PlayerStats.set_spawn_position(SaveGame.game_data.spawn_position)
 	
 func _physics_process(delta):
 	if PlayerStats.get_current_stamina() < PlayerStats.get_max_stamina():
@@ -152,20 +155,7 @@ func spawn_pig_with_player():
 		pig.global_position = global_position
 
 func _on_RoomDetector_area_entered(area):
-	var collision_shape = area.get_node("CollisionShape2D")
-	var size = collision_shape.shape.extents*2
-	var view_size = get_viewport_rect().size * camera2D.zoom
-	if size.x < view_size.x:
-		size.x = view_size.x
-	if size.y < view_size.y:
-		size.y = view_size.y
-		
-	camera2D.limit_top = collision_shape.global_position.y - size.y/2
-	camera2D.limit_left = collision_shape.global_position.x - size.x/2
-	
-	
-	camera2D.limit_bottom = camera2D.limit_top + size.y
-	camera2D.limit_right = camera2D.limit_left + size.x
+	Events.emit_signal("enter_new_room", area)
 	
 func _on_Hurtbox_invincibility_started():
 	blinkAnimationPlayer.play("Start")
@@ -173,3 +163,7 @@ func _on_Hurtbox_invincibility_started():
 
 func _on_Hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+	
+func connect_camera(camera):
+	var camera_path = camera.get_path()
+	remoteTransform2D.remote_path = camera_path

@@ -8,9 +8,9 @@
 [ext_resource path="res://Scene/HealthUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scene/StaminaUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scene/MenuScreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://TittleScreen/FadeIn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scene/Hotbar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://TittleScreen/GameOverScreen.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scene/LoadingScreen.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
@@ -43,6 +43,8 @@ margin_bottom = 29.0
 
 [node name="FPSdisplay" parent="." instance=ExtResource( 2 )]
 
+[node name="Hotbar" parent="." instance=ExtResource( 10 )]
+
 [node name="MenuScreen" parent="." instance=ExtResource( 8 )]
 
 [node name="CanvasLayerBlur" type="TextureRect" parent="MenuScreen"]
@@ -53,9 +55,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameOverScreen" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
@@ -68,15 +67,18 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="FadeIn" parent="." instance=ExtResource( 9 )]
+[node name="LoadingScreen" parent="." instance=ExtResource( 12 )]
+
+[node name="CanvasLayerBlur" type="TextureRect" parent="LoadingScreen"]
+show_behind_parent = true
+material = SubResource( 80 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
 
 [node name="Inventory" parent="." instance=ExtResource( 3 )]
 
 [node name="SoundEffects" parent="." instance=ExtResource( 4 )]
-
-[node name="Hotbar" parent="." instance=ExtResource( 10 )]
