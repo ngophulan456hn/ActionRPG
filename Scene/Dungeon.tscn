@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Dungeon/16x16 dungeon ii wall reconfig v04 spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Scene/BagCoins.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scene/DoorDungeon.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scene/DungeonChest.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scene/Skeleton.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=113]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
@@ -801,7 +800,7 @@ stream = ExtResource( 7 )
 tile_set = SubResource( 87 )
 cell_size = Vector2( 16, 32 )
 format = 1
-tile_data = PoolIntArray( 65516, 0, 4, 65517, 0, 2, 65518, 0, 2, 65519, 0, 2, 65520, 0, 2, 65521, 0, 2, 65522, 0, 2, 65523, 0, 2, 65524, 0, 2, 65525, 0, 2, 65526, 0, 2, 65527, 0, 2, 65528, 0, 2, 65529, 0, 2, 65530, 0, 2, 65531, 0, 2, 65532, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 8, 0, 0, 6, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 3, 11, 0, 1, 12, 0, 2, 13, 0, 2, 14, 0, 2, 15, 0, 2, 16, 0, 2, 17, 0, 2, 18, 0, 8, 19, 0, 65539, 131052, 0, 131072, 131071, 0, 196609, 65536, 0, 196611, 65554, 0, 196609, 65555, 0, 196611, 196588, 0, 131072, 262124, 0, 131072, 327660, 0, 131072, 327679, 0, 65537, 262144, 0, 65539, 262162, 0, 65537, 262163, 0, 65539, 393196, 0, 196612, 393197, 0, 2, 393198, 0, 2, 393199, 0, 2, 393200, 0, 2, 393201, 0, 2, 393202, 0, 2, 393203, 0, 2, 393204, 0, 2, 393205, 0, 2, 393206, 0, 2, 393207, 0, 2, 393208, 0, 2, 393209, 0, 2, 393210, 0, 2, 393211, 0, 2, 393212, 0, 2, 393213, 0, 2, 393214, 0, 2, 393215, 0, 196617, 327680, 0, 196613, 327681, 0, 2, 327682, 0, 2, 327683, 0, 2, 327684, 0, 2, 327685, 0, 2, 327686, 0, 2, 327687, 0, 3, 327692, 0, 1, 327693, 0, 2, 327694, 0, 2, 327695, 0, 2, 327696, 0, 2, 327697, 0, 2, 327698, 0, 196617, 327699, 0, 196611 )
+tile_data = PoolIntArray( 65516, 0, 4, 65517, 0, 2, 65518, 0, 2, 65519, 0, 2, 65520, 0, 2, 65521, 0, 2, 65522, 0, 2, 65523, 0, 2, 65524, 0, 2, 65525, 0, 2, 65526, 0, 2, 65527, 0, 2, 65528, 0, 2, 65529, 0, 2, 65530, 0, 2, 65531, 0, 2, 65532, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 8, 0, 0, 6, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 3, 12, 0, 1, 13, 0, 2, 14, 0, 2, 15, 0, 2, 16, 0, 2, 17, 0, 2, 18, 0, 8, 19, 0, 65539, 131052, 0, 131072, 131071, 0, 196609, 65536, 0, 196611, 65554, 0, 196609, 65555, 0, 196611, 196588, 0, 131072, 262124, 0, 131072, 327660, 0, 131072, 327679, 0, 65537, 262144, 0, 65539, 262162, 0, 65537, 262163, 0, 65539, 393196, 0, 196612, 393197, 0, 2, 393198, 0, 2, 393199, 0, 2, 393200, 0, 2, 393201, 0, 2, 393202, 0, 2, 393203, 0, 2, 393204, 0, 2, 393205, 0, 2, 393206, 0, 2, 393207, 0, 2, 393208, 0, 2, 393209, 0, 2, 393210, 0, 2, 393211, 0, 2, 393212, 0, 2, 393213, 0, 2, 393214, 0, 2, 393215, 0, 196617, 327680, 0, 196613, 327681, 0, 2, 327682, 0, 2, 327683, 0, 2, 327684, 0, 2, 327685, 0, 2, 327686, 0, 2, 327687, 0, 3, 327692, 0, 1, 327693, 0, 2, 327694, 0, 2, 327695, 0, 2, 327696, 0, 2, 327697, 0, 2, 327698, 0, 196617, 327699, 0, 196611 )
 
 [node name="FloorTileMap" type="TileMap" parent="."]
 z_index = -1
@@ -848,16 +847,16 @@ shape = SubResource( 52 )
 z_index = -1
 
 [node name="Spikes" parent="YSort/Room1/Trap" instance=ExtResource( 10 )]
-position = Vector2( 152, 88 )
+position = Vector2( 152, 56 )
 
 [node name="Spikes2" parent="YSort/Room1/Trap" instance=ExtResource( 10 )]
-position = Vector2( 152, 72 )
+position = Vector2( 152, 40 )
 
 [node name="Spikes3" parent="YSort/Room1/Trap" instance=ExtResource( 10 )]
-position = Vector2( 168, 72 )
+position = Vector2( 168, 40 )
 
 [node name="Spikes4" parent="YSort/Room1/Trap" instance=ExtResource( 10 )]
-position = Vector2( 168, 88 )
+position = Vector2( 168, 56 )
 
 [node name="Decoration" type="YSort" parent="YSort/Room1"]
 
@@ -868,6 +867,7 @@ position = Vector2( 72, 24 )
 position = Vector2( 248, 24 )
 
 [node name="DoorDungeon" parent="YSort/Room1/Decoration" instance=ExtResource( 19 )]
+visible = false
 position = Vector2( 160, 16 )
 
 [node name="Room2" type="YSort" parent="YSort"]
@@ -887,9 +887,6 @@ shape = SubResource( 1 )
 z_index = -1
 
 [node name="Enemy" type="YSort" parent="YSort/Room2"]
-
-[node name="Skeleton" parent="YSort/Room2/Enemy" instance=ExtResource( 21 )]
-position = Vector2( 112, 104 )
 
 [node name="Decoration" type="YSort" parent="YSort/Room2"]
 
@@ -939,6 +936,21 @@ position = Vector2( 40, 48 )
 position = Vector2( 24, 96 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 5 )]
+
+[node name="Hotbar" parent="CanvasLayer" index="3"]
+visible = false
+
+[node name="MenuScreen" parent="CanvasLayer" index="4"]
+visible = false
+
+[node name="GameOverScreen" parent="CanvasLayer" index="5"]
+visible = false
+
+[node name="LoadingScreen" parent="CanvasLayer" index="6"]
+visible = false
+
+[node name="Inventory" parent="CanvasLayer" index="7"]
+visible = false
 
 [connection signal="body_entered" from="YSort/Room1/ExitDungeon" to="." method="_on_ExitDungeon_body_entered"]
 

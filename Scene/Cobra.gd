@@ -6,11 +6,11 @@ onready var AnimateSprite = $AnimatedSprite
 onready var hurtBox = $Hurtbox
 onready var softCollisions = $SoftCollisions
 onready var wanderController = $WanderController
-onready var attackHitbox = $HitboxPivot/AttackHitbox
-onready var attackHitboxCollision = $HitboxPivot/AttackHitbox/CollisionShape2D
-onready var timer = $Timer
+onready var hitbox = $Hitbox
+onready var hitboxCollision = $Hitbox/CollisionShape2D
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
-enum { IDLE, WANDER, CHASE, ATTACK, DEAD, REVIVE}
+enum { IDLE, WANDER, CHASE, HIT, ATTACK, DEAD }
 
 var state = IDLE
 var velocity = Vector2.ZERO
@@ -22,15 +22,15 @@ const ACCELERATION = 500
 const FRICTION = 500
 const KNOCKBACK_DISTANCE = 200
 
-export var skeleton_max_health: int = 2
+export var cobra_max_health: int = 2
 
 func _ready():
 	AnimateSprite.play('Idle')
-	stats.set_max_health(skeleton_max_health)
-	stats.set_health(skeleton_max_health)
+	stats.set_max_health(cobra_max_health)
+	stats.set_health(cobra_max_health)
 	state = pick_random_state([IDLE, WANDER])
-	attackHitboxCollision.disabled = true
-	attackHitbox.knockback_vector = attack_side
+	hitboxCollision.disabled = true
+	hitbox.knockback_vector = attack_side
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -59,7 +59,7 @@ func _physics_process(delta):
 				
 		ATTACK:
 			AnimateSprite.play('Attack')
-			attackHitboxCollision.disabled = false
+			hitboxCollision.disabled = false
 				
 	if softCollisions.is_colliding():
 		velocity += softCollisions.get_push_vector() * delta * ACCELERATION
@@ -72,14 +72,14 @@ func accelerate_toward_point(position: Vector2, delta, is_player: bool):
 		velocity = Vector2.ZERO
 		AnimateSprite.flip_h = direction.x < 0
 		if direction.x > 0:
-			attackHitbox.knockback_vector = Vector2.RIGHT
+			hitbox.knockback_vector = Vector2.RIGHT
 		else:
-			attackHitbox.knockback_vector = Vector2.LEFT
+			hitbox.knockback_vector = Vector2.LEFT
 		state = ATTACK
 	else:
 		velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 		AnimateSprite.flip_h = velocity.x < 0
-		AnimateSprite.play('Walk')
+		AnimateSprite.play('Move')
 	
 func update_state_and_wander():
 	state = pick_random_state([IDLE, WANDER])
@@ -104,20 +104,19 @@ func _on_Stats_no_health():
 	AnimateSprite.play('Dead')
 	state = DEAD
 
-func _on_AnimatedSprite_animation_finished():
+func _on_AnimateSprite_animation_finished():
 	if state == IDLE:
 		if wanderController.get_time_left() == 0:
-				update_state_and_wander()		
+			update_state_and_wander()		
 	if state == ATTACK:
 		state = CHASE
-		attackHitboxCollision.disabled = true
+		hitboxCollision.disabled = true
 	if state == DEAD:
-		timer.start(2)
-	if state == REVIVE:
-		state == IDLE
-
-func _on_Timer_timeout():
-	if state == DEAD:
-		AnimateSprite.play('Dead', true)
-		state = REVIVE
+		queue_free()
 		
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")
+

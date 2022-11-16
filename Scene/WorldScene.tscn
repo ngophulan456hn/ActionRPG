@@ -1174,7 +1174,7 @@ position = Vector2( 72, 64 )
 
 [node name="AnimateSprite" parent="YSort/Room1/Bat2" index="0"]
 material = SubResource( 54 )
-frame = 2
+frame = 4
 
 [node name="WanderController" parent="YSort/Room1/Bat2" index="8"]
 wander_range = 0
@@ -1320,10 +1320,12 @@ position = Vector2( 256, 104 )
 position = Vector2( 64, 104 )
 
 [node name="LeftSign" parent="YSort/Room2" instance=ExtResource( 17 )]
+visible = false
 position = Vector2( 88, 64 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="RightSign" parent="YSort/Room2" instance=ExtResource( 16 )]
+visible = false
 position = Vector2( 232, 64 )
 scale = Vector2( 0.5, 0.5 )
 
